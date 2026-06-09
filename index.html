@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <meta name="format-detection" content="telephone=no">
+    <title>Приглашение на свадьбу</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main>
+
+        <style>
+            /* Глобальные настройки для мобильных - БЕЗ FIXED позиционирования */
+            body {
+                margin: 0;
+                padding: 0;
+                overflow-x: hidden;
+                overflow-y: auto;
+                -webkit-overflow-scrolling: touch;
+                background-color: #09221e;
+            }
+            
+            main {
+                overflow-x: hidden;
+                overflow-y: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+        </style>
+        
+        <!-- Hero секция: фото на весь экран -->
+        <!-- Hero секция: фото на весь экран -->
+        <!-- Hero секция: фото на весь экран - исправлено для мобильных -->
+        <section id="hero" class="hero-section">
+            <img src="1.jpg" alt="Наша свадьба" class="hero-image">
+            <div class="hero-music">
+                <button class="music-button" id="musicButton">включить музыку</button>
+            </div>
+            <audio id="bgMusic" src="1.mp3" loop preload="auto"></audio>
+        </section>
+
+        <!-- Вторая секция: фото 2.jpg -->
+        <section class="second-section">
+            <img src="2.jpg" alt="Наша история" class="second-image">
+        </section>
+
+        <!-- Третья секция: фото 3.jpg -->
+<!-- Третья секция: фото 3.jpg -->
+<section class="third-section">
+    <div class="map-button-wrapper">
+        <img src="3.jpg" alt="Наша история" class="third-image">
+        <a href="https://yandex.ru/maps/-/CPdXjHZZ" target="_blank" rel="noopener noreferrer" class="map-button">Как пройти?</a>
+    </div>
+</section>
+
+
+                <!-- Четвертая секция: Timing -->
+        <section class="timing-section">
+            <div class="timing-container">
+                <h2 class="timing-title">тайминг</h2>
+                
+                <div class="schedule-list">
+                    <div class="schedule-item">
+                        <span class="schedule-time">15:30</span>
+                        <span class="schedule-event">сбор гостей</span>
+                    </div>
+                    <div class="schedule-item">
+                        <span class="schedule-time">16:00</span>
+                        <span class="schedule-event">церемония</span>
+                    </div>
+                    <div class="schedule-item">
+                        <span class="schedule-time">17:00</span>
+                        <span class="schedule-event">банкет</span>
+                    </div>
+                    <div class="schedule-item">
+                        <span class="schedule-time">23:00</span>
+                        <span class="schedule-event">конец вечера</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+                <!-- Пятая секция: Dress code -->
+        <!-- Пятая секция: Dress code -->
+        <section class="dresscode-section">
+            <div class="dresscode-container">
+                <h2 class="dresscode-title">dress-code</h2>
+                
+                <p class="dresscode-text">
+                    мы хотим создать особую атмосферу нашего праздника. Будем благодарны, если вы поддержите цветовую гамму нашей свадьбы
+                </p>
+                
+                <div class="colors-grid">
+                    <img src="dress.png" alt="Dress code" class="dress-image">
+                </div>
+
+                <p class="inspire-text">вдохновляйтесь образами:</p>
+
+                <div class="example-image-wrapper">
+                    <img src="exemple.png" alt="Пример образов" class="example-image">
+                </div>
+            </div>
+        </section>
+
+
+                <!-- Шестая секция: фото + кнопка -->
+        <!-- Шестая секция: фото + текст + кнопка -->
+        <section class="photo-button-section">
+            <div class="photo-wrapper">
+                <img src="4.jpg" alt="Наша свадьба" class="section-photo">
+                <div class="photo-overlay">
+                    <p class="confirmation-text">Пожалуйста, <br> подтвердите свое присутствие до 15 июля, чтобы мы могли спланировать нашу свадьбу наилучшим образом</p>
+                    <button class="send-button">Я приду</button>
+                </div>
+            </div>
+        </section>
+
+
+                <!-- Футер -->
+        <!-- Футер -->
+        <!-- Футер -->
+        <footer class="footer">
+            <div class="footer-container">
+                <div class="contact-block">
+                    <p class="contact-label">Жених</p>
+                    <p class="contact-number">+7 (962) 019-18-45</p>
+                    <a href="https://t.me/pelipenkko" target="_blank" class="contact-tg-button">Написать в Telegram</a>
+                </div>
+                <div class="contact-block">
+                    <p class="contact-label">Невеста</p>
+                    <p class="contact-number">8 (919) 744-60-18</p>
+                    <a href="https://t.me/Viksssi12" target="_blank" class="contact-tg-button">Написать в Telegram</a>
+                </div>
+            </div>
+        </footer>
+
+
+                <!-- Модальное окно -->
+       <!-- Модальное окно -->
+<div id="modal" class="modal">
+    <div class="modal-content">
+        <div class="modal-slides">
+            <!-- Слайд 1 - Имя и фамилия -->
+            <div class="slide active" data-slide="0">
+                <h3 class="slide-title">Ваши фамилия и имя</h3>
+                <input type="text" id="guestName" class="modal-input" placeholder="Имя и фамилия" autocomplete="off">
+                <button class="slide-next">Далее</button>
+            </div>
+
+            <!-- Слайд 2 - Алкоголь -->
+            <div class="slide" data-slide="1">
+                <h3 class="slide-title">Ваши предпочтения по алкоголю</h3>
+                <div class="alcohol-options">
+                    <label class="checkbox-label">
+                        <input type="checkbox" value="красное вино">
+                        <span class="checkmark"></span>
+                        красное вино
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" value="белое вино">
+                        <span class="checkmark"></span>
+                        белое вино
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" value="коньяк">
+                        <span class="checkmark"></span>
+                        коньяк
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" value="виски">
+                        <span class="checkmark"></span>
+                        виски
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" value="водка">
+                        <span class="checkmark"></span>
+                        водка
+                    </label>
+                </div>
+                <div class="slide-buttons">
+                    <button class="slide-prev">Назад</button>
+                    <button class="slide-next">Далее</button>
+                </div>
+            </div>
+
+            <!-- Слайд 3 - Музыка -->
+            <div class="slide" data-slide="2">
+                <h3 class="slide-title">Ваши музыкальные предпочтения</h3>
+                <textarea id="musicPreferences" class="modal-textarea" placeholder="Напишите, какие песни или исполнители вам нравятся..."></textarea>
+                <div class="slide-buttons">
+                    <button class="slide-prev">Назад</button>
+                    <button class="slide-next">Далее</button>
+                </div>
+            </div>
+
+            <!-- Слайд 4 - Подарки (новый) -->
+            <div class="slide" data-slide="3">
+                <h3 class="slide-title">О подарках</h3>
+                <p class="gift-message">
+                    Чтобы ваши руки оставались свободными для объятий и танцев, будем благодарны за легкие и приятные подарки в конвертах
+                </p>
+                <div class="slide-buttons">
+                    <button class="slide-prev">Назад</button>
+                    <button class="slide-submit">Отправить</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+        <!-- Здесь позже будут другие секции -->
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
