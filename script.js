@@ -190,7 +190,7 @@ function showLoadingModal() {
 }
 
 // ========== GOOGLE SHEETS ==========
-const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbznkHX0olQY8bxahFVIiQkPyaEfpA2xa9f6ZavYNM3FuDsgDkTqlKwbfBI23sx87FhH/exec'; // ЗАМЕНИТЕ НА ВАШ URL
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxqH4KBRH1d1pOKKlr4KeHQNuP0pjYT49ByqZKiSkHfDwzGxrjiFQGLorHc4JYCSzMq/exec'; // ЗАМЕНИТЕ НА ВАШ URL
 
 // Музыка
 const musicButton = document.getElementById('musicButton');
@@ -259,19 +259,24 @@ modal.addEventListener('click', function(e) {
 
 // Функция сброса модального окна
 function resetModal() {
-    // Очищаем данные
-    formData = { name: '', alcohol: [], music: '' };
+    formData = { name: '', guests: 1, alcohol: [], music: '' };
     
-    // Очищаем поля
+    // Сброс счетчика
+    const guestCountSpan = document.getElementById('guestCount');
+    if (guestCountSpan) guestCountSpan.textContent = '1';
+    
+    // Очистка имени
     const nameInput = document.getElementById('guestName');
     if (nameInput) nameInput.value = '';
     
+    // Очистка чекбоксов
     document.querySelectorAll('.alcohol-options input').forEach(cb => cb.checked = false);
     
+    // Очистка текстареа
     const musicTextarea = document.getElementById('musicPreferences');
     if (musicTextarea) musicTextarea.value = '';
     
-    // Показываем первый слайд
+    // Показываем первый слайд (с количеством гостей)
     document.querySelectorAll('.slide').forEach((slide, index) => {
         if (index === 0) {
             slide.classList.add('active');
@@ -282,9 +287,12 @@ function resetModal() {
 }
 
 // Обработка перехода между слайдами с сохранением данных
-// Кнопки "Далее"
+// Кнопки "Далее" - исправленная версия
 document.querySelectorAll('.slide-next').forEach(button => {
-    button.addEventListener('click', function() {
+    // Убираем старые обработчики, если есть
+    button.removeEventListener('click', button._listener);
+    
+    const handler = function() {
         let currentSlide = null;
         let currentIndex = 0;
         
@@ -299,24 +307,30 @@ document.querySelectorAll('.slide-next').forEach(button => {
         
         // Сохраняем данные перед переходом
         if (currentIndex === 0) {
+            const guestCountSpan = document.getElementById('guestCount');
+            if (guestCountSpan) formData.guests = parseInt(guestCountSpan.textContent) || 1;
+        } else if (currentIndex === 1) {
             const nameInput = document.getElementById('guestName');
             if (nameInput) formData.name = nameInput.value.trim();
-        } else if (currentIndex === 1) {
+        } else if (currentIndex === 2) {
             formData.alcohol = [];
             document.querySelectorAll('.alcohol-options input:checked').forEach(cb => {
                 formData.alcohol.push(cb.value);
             });
-        } else if (currentIndex === 2) {
+        } else if (currentIndex === 3) {
             const musicTextarea = document.getElementById('musicPreferences');
             if (musicTextarea) formData.music = musicTextarea.value.trim();
         }
         
-        // Показать следующий
+        // Показать следующий слайд
         if (currentSlide && currentIndex < slides.length - 1) {
             currentSlide.classList.remove('active');
             slides[currentIndex + 1].classList.add('active');
         }
-    });
+    };
+    
+    button.addEventListener('click', handler);
+    button._listener = handler;
 });
 
 // Кнопки "Назад"
@@ -348,9 +362,12 @@ document.querySelector('.slide-submit').addEventListener('click', async function
     const musicTextarea = document.getElementById('musicPreferences');
     if (musicTextarea) formData.music = musicTextarea.value.trim();
     
-    // Валидация
     if (!formData.name) {
         showModal('Ошибка', 'Пожалуйста, введите ваше имя', true);
+        return;
+    }
+    if (!formData.guests || formData.guests < 1) {
+        showModal('Ошибка', 'Пожалуйста, укажите количество гостей', true);
         return;
     }
     
@@ -361,6 +378,7 @@ document.querySelector('.slide-submit').addEventListener('click', async function
         // Формируем данные для отправки
         const formDataToSend = new URLSearchParams();
         formDataToSend.append('name', formData.name);
+        formDataToSend.append('guests', formData.guests);
         formDataToSend.append('music', formData.music);
         
         for (const alcohol of formData.alcohol) {
@@ -417,4 +435,28 @@ allButtons.forEach(btn => {
     btn.addEventListener('touchcancel', function() {
         this.classList.remove('touch-active');
     });
+});
+
+
+// Обработчики для счетчика гостей
+document.addEventListener('click', function(e) {
+    const target = e.target;
+    
+    if (target.classList && target.classList.contains('counter-plus')) {
+        const countSpan = document.getElementById('guestCount');
+        if (countSpan) {
+            let val = parseInt(countSpan.textContent) || 1;
+            val = Math.min(val + 1, 10);
+            countSpan.textContent = val;
+        }
+    }
+    
+    if (target.classList && target.classList.contains('counter-minus')) {
+        const countSpan = document.getElementById('guestCount');
+        if (countSpan) {
+            let val = parseInt(countSpan.textContent) || 1;
+            val = Math.max(val - 1, 1);
+            countSpan.textContent = val;
+        }
+    }
 });
