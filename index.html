@@ -98,7 +98,7 @@
                 <p class="inspire-text">вдохновляйтесь образами:</p>
 
                 <div class="example-image-wrapper">
-                    <img src="exemple.png" alt="Пример образов" class="example-image">
+                    <img src="exemple2.png" alt="Пример образов" class="example-image">
                 </div>
             </div>
         </section>
@@ -141,15 +141,30 @@
 <div id="modal" class="modal">
     <div class="modal-content">
         <div class="modal-slides">
-            <!-- Слайд 1 - Имя и фамилия -->
+            <!-- Слайд 1 - Количество гостей (ПЕРВЫЙ) -->
             <div class="slide active" data-slide="0">
-                <h3 class="slide-title">Ваши фамилия и имя</h3>
-                <input type="text" id="guestName" class="modal-input" placeholder="Имя и фамилия" autocomplete="off">
+                <h3 class="slide-title">Количество гостей</h3>
+                <div class="counter-container">
+                    <button type="button" class="counter-btn counter-minus">−</button>
+                    <span class="counter-value" id="guestCount">1</span>
+                    <button type="button" class="counter-btn counter-plus">+</button>
+                </div>
+                <p class="counter-note">включая вас</p>
                 <button class="slide-next">Далее</button>
             </div>
 
-            <!-- Слайд 2 - Алкоголь -->
+            <!-- Слайд 2 - Имя и фамилия -->
             <div class="slide" data-slide="1">
+                <h3 class="slide-title">Ваши фамилия и имя</h3>
+                <input type="text" id="guestName" class="modal-input" placeholder="Имя и фамилия" autocomplete="off">
+                <div class="slide-buttons">
+                    <button class="slide-prev">Назад</button>
+                    <button class="slide-next">Далее</button>
+                </div>
+            </div>
+
+            <!-- Слайд 2 - Алкоголь -->
+            <div class="slide" data-slide="2">
                 <h3 class="slide-title">Ваши предпочтения по алкоголю</h3>
                 <div class="alcohol-options">
                     <label class="checkbox-label">
@@ -185,7 +200,7 @@
             </div>
 
             <!-- Слайд 3 - Музыка -->
-            <div class="slide" data-slide="2">
+            <div class="slide" data-slide="3">
                 <h3 class="slide-title">Ваши музыкальные предпочтения</h3>
                 <textarea id="musicPreferences" class="modal-textarea" placeholder="Напишите, какие песни или исполнители вам нравятся..."></textarea>
                 <div class="slide-buttons">
@@ -195,7 +210,7 @@
             </div>
 
             <!-- Слайд 4 - Подарки (новый) -->
-            <div class="slide" data-slide="3">
+            <div class="slide" data-slide="4">
                 <h3 class="slide-title">О подарках</h3>
                 <p class="gift-message">
                     Чтобы ваши руки оставались свободными для объятий и танцев, будем благодарны за легкие и приятные подарки в конвертах
